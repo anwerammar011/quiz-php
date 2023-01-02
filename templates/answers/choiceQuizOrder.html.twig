@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}the order of users{% endblock %}
+
+
+{% block body %}
+<h1>Cliquez sur un quiz pour voir le classement des utilisateur</h1>
+{% if quizs is defined and quizs is not null %}
+        <div class="g-col-6">
+                {% for quiz in quizs  %} 
+                        <button type="button" class="btn btn-info btn-block"  onclick="location.href='/order/{{quiz.id}}'">
+                            Le Quiz Numéro {{quiz.id}}: {{quiz.quizTheme }}
+                        </button>
+                {% endfor %}    
+        </div>
+
+{% endif %}     
+{% endblock %}
+

@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+	<h1>Quiz Numéro: {{id}}</h1>
+	<h1 style="color:#59A1D9;">{{theme}}</h1>
+	
+	{{ form(form) }}
+        <button id="btn-precedent" type="button"  class="btn btn-success"   onclick="previousQuestion()">Question precedente</button>
+		<button id="btn-suivant" type="button" class="btn btn-success" onclick="nextQuestion()" >Question suivante</button></br></br>
+		<input type="button" class="btn btn-outline-info"value="Retourner pour choisir un autre Quiz!" onclick="history.back()">
+
+	{% if is_granted('ROLE_ADMIN') %}	
+	 <button type="button" class="btn btn-outline-info"   onclick="location.href='/questions/{{id}}'">
+       Ajouter Une Question <i class="bi bi-file-earmark-plus-fill"></i>
+	</button>  </br></br>
+	<button type="button"  class="btn btn-outline-danger"   onclick="deleteQuestion({{id}})" data-action="submit-confirm:async:submitted->reload-content#refreshContent">
+      <i>  Supprimer Cette Question </i>
+	</button> 
+	{% endif %}	
+
+    <script src="/javascript/hideAndShowQuestionQuiz.js"></script>
+
+	{% endblock %}

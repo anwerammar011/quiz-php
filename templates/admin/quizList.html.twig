@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+<h1> Les Quizs déja créés:</h1>
+<div class="g-col-6">
+        {% if quizs is defined and quizs is not null %} 
+                {% for quiz in quizs  %} 
+                <button type="button" class="btn btn-info btn-block"  onclick="location.href='/answer/{{quiz.id}}'">
+                        Le Quiz Numéro {{quiz.id}}: {{quiz.quizTheme }}
+                </button>
+                <button type="button"  class="btn btn-outline-danger" onclick="location.href='/deleteQuiz/{{quiz.id}}'"  >
+                         <i>  Supprimer Ce Quiz</i>
+	        </button>
+                {% endfor %}    
+        {% endif %}
+            
+</div>
+
+<button type="button" class="btn btn-outline-success"   onclick="location.href='/quiz'">
+        Ajouter Un Nouveau Quiz <i class="bi bi-file-earmark-plus-fill"></i>
+</button> 
+{% endblock %}
+

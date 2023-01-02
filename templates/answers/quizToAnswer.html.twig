@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+    {% if is_granted('ROLE_USER') %}
+        <h1>Vous pouvez commencer à répondre aux Quizs !</h1>
+        <div class="g-col-6">
+                {% if quizs is defined and quizs is not null %} 
+                    {% for quiz in quizs  %} 
+                        <button type="button" class="btn btn-info btn-block"  onclick="location.href='/answer/{{quiz.id}}'">
+                            Le Quiz Numéro {{quiz.id}}: {{quiz.quizTheme }}
+                        </button>
+                        
+
+                    {% endfor %}    
+                {% endif %}
+            
+        </div>
+    {% endif %}
+{% endblock %}
